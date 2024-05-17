@@ -1,7 +1,7 @@
-import Login from './Login'
-import Cart from './Cart'
-import Home from './Home'
-import Faves from './Faves'
+import Login from './components/Login'
+import Cart from './components/Cart'
+import Home from './components/Home'
+import Faves from './components/Faves'
 
 import {
   createHashRouter,
