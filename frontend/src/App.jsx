@@ -8,6 +8,10 @@ import Login from './components/Login'
 import Cart from './components/Cart'
 import Home from './components/Home'
 import Faves from './components/Faves'
+import Sort from './components/Sort'
+//import NavBarImage from './components/NavBarImage.jsx'
+
+
 
 import {
   createHashRouter,
@@ -20,12 +24,13 @@ function Root() {
     <>
     <Navbar fixed="top"  bg="light" data-bs-theme="light">
         <Container>
-        <Navbar.Brand as={Link} to="/">Fruktkorg</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Fruktkorg {/* <img src="/public/Kvalitetskontroll.jpg" alt="test"/> */}</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Sortiment</Nav.Link>
+            <Nav.Link as={Link} to="/sort">Sortiment</Nav.Link>
             <Nav.Link as={Link} to="/login">Logga in</Nav.Link>
             <Nav.Link as={Link} to="/faves">Favoriter</Nav.Link>
             <Nav.Link as={Link} to="/cart">Varukorg</Nav.Link>
+            {/* <NavBarImage /> */}
           </Nav>
         </Container>
     </Navbar>
@@ -41,10 +46,11 @@ function App() {
     {
       children: [
         { element: <Home />, path: '/' },
+        { element: <Sort />, path: '/Sort' },
         { element: <Login />, path: '/login' },
         { element: <Cart />, path: '/cart' },
-        { element: <Faves />, path: '/Faves' },
-        { element: <Faves />, path: '/Sort' }
+        { element: <Faves />, path: '/Faves' }
+
       ],
 
       element: <Root  />

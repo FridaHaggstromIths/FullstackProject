@@ -1,6 +1,10 @@
+import HeroImage from './HeroImage.jsx'
+
 const Home = () =>{
   return (
-    <h1>Home</h1>
+    <>
+    <HeroImage />
+    </>
   )
 }
 export default Home
