@@ -10,7 +10,7 @@ import Home from './components/Home'
 import Faves from './components/Faves'
 import Sort from './components/Sort'
 //import NavBarImage from './components/NavBarImage.jsx'
-
+import Footer from './components/Footer'
 
 
 import {
@@ -36,7 +36,9 @@ function Root() {
     </Navbar>
         <main>
           <Outlet />
+          <Footer />
         </main>
+    
     </>
   )
 }
