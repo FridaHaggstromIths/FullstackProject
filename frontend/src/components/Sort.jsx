@@ -1,8 +1,10 @@
-import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+//import Card from 'react-bootstrap/Card'
+//import Col from 'react-bootstrap/Col'
+//import Row from 'react-bootstrap/Row'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
-const cardData = [
+/* const fruktkorgar = [
   {
     imgSrc: 'path/to/image1.jpg',
     title: 'Äpple',
@@ -33,26 +35,49 @@ const cardData = [
     title: 'Card title 6',
     text: 'This is the sixth card with its own unique content.',
   },
-]
+] */
 
 function Sort() {
+  const [fruktkorg, setfruktkorg] = useState([]);
+
+  useEffect(() => {
+    fetch('/fruktkorg')
+      .then((response) => response.json())
+      .then((data) => setfruktkorg (data))
+
+  }, [])
+
   return (
-    <Row xs={1} md={2} className="g-4">
-      {cardData.map((card, idx) => (
+    <div>
+            <h1>Hej test fruktkorg h1 frontend Sort</h1>
+            <ul>
+                {fruktkorg.map((frukt) => (
+                    <li key={frukt.id}>
+                        {frukt.titel}:{frukt.info}
+                    </li>
+                ))}
+            </ul>
+
+        </div>
+
+  )
+}
+
+export default Sort;
+
+
+{/* <Row xs={1} md={2} className="g-4">
+      {fruktkorgar.map((frukt, idx) => (
         <Col key={idx}>
           <Card>
-            <Card.Img variant="top" src={card.imgSrc} />
+            <Card.Img variant="top" src={frukt.id1.img} />
             <Card.Body>
-              <Card.Title>{card.title}</Card.Title>
+              <Card.Title>{frukt.id1.title}</Card.Title>
               <Card.Text>
-                {card.text}
+                {frukt.id1.text}
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
       ))}
-    </Row>
-  )
-}
-
-export default Sort;
+    </Row> */}
