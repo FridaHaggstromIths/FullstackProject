@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function Sort() {
+function Product() {
   const [fruktkorg, setfruktkorg] = useState([])
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function Sort() {
 )
 }
 
-export default Sort
+export default Product
 
 
 
