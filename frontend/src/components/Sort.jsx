@@ -1,44 +1,13 @@
-//import Card from 'react-bootstrap/Card'
-//import Col from 'react-bootstrap/Col'
-//import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-/* const fruktkorgar = [
-  {
-    imgSrc: 'path/to/image1.jpg',
-    title: 'Äpple',
-    text: 'Info om fruktkorg Äpple',
-  },
-  {
-    imgSrc: 'path/to/image2.jpg',
-    title: 'Card title 2',
-    text: 'This is the second card with its own unique content.',
-  },
-  {
-    imgSrc: 'path/to/image3.jpg',
-    title: 'Card title 3',
-    text: 'This is the third card with its own unique content.',
-  },
-  {
-    imgSrc: 'path/to/image4.jpg',
-    title: 'Card title 4',
-    text: 'This is the fourth card with its own unique content.',
-  },
-  {
-    imgSrc: 'path/to/image5.jpg',
-    title: 'Card title 5',
-    text: 'This is the fifth card with its own unique content.',
-  },
-  {
-    imgSrc: 'path/to/image6.jpg',
-    title: 'Card title 6',
-    text: 'This is the sixth card with its own unique content.',
-  },
-] */
-
 function Sort() {
-  const [fruktkorg, setfruktkorg] = useState([]);
+  const [fruktkorg, setfruktkorg] = useState([])
 
   useEffect(() => {
     fetch('/fruktkorg')
@@ -48,36 +17,39 @@ function Sort() {
   }, [])
 
   return (
-    <div>
+    <Row xs={1} md={2} className="g-4">
+    {fruktkorg.map((frukt) => (
+      <Col key={frukt.id}>
+        <Card>
+          <Card.Img variant="top" src={frukt.img} alt="en bild på en fruktkorg"/>
+          <Card.Body>
+            <Card.Title>{frukt.titel}</Card.Title>
+            <Card.Text>
+              {frukt.info}
+            </Card.Text>
+            <Button variant="success"size="lg">Visa</Button>{' '}
+          </Card.Body>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+)
+}
+
+
+export default Sort
+
+
+{/* <div>
             <h1>Hej test fruktkorg h1 frontend Sort</h1>
             <ul>
                 {fruktkorg.map((frukt) => (
                     <li key={frukt.id}>
-                        {frukt.titel}:{frukt.info}
+                        {frukt.titel}
+                        {frukt.info}
+                        <img src={frukt.img} alt={frukt.title} />
                     </li>
                 ))}
             </ul>
 
-        </div>
-
-  )
-}
-
-export default Sort;
-
-
-{/* <Row xs={1} md={2} className="g-4">
-      {fruktkorgar.map((frukt, idx) => (
-        <Col key={idx}>
-          <Card>
-            <Card.Img variant="top" src={frukt.id1.img} />
-            <Card.Body>
-              <Card.Title>{frukt.id1.title}</Card.Title>
-              <Card.Text>
-                {frukt.id1.text}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row> */}
+        </div> */}
