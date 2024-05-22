@@ -1,4 +1,25 @@
 #root {
   overflow-x: hidden;
   margin: 0;
+  width: 100%;
+
 }
+.Navhome {
+  font-size: 48px;
+}
+  .ms-auto {
+font-size: 48px;
+  }
+
+
+@keyframes jump {
+   0%, 100% {
+     transform: translateY(0);
+    }
+  50% {
+    transform: translateY(-10px);
+    }
+  }
+  .nav-link:hover{
+    animation: jump 2s ease
+  }

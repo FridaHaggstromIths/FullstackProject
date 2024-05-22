@@ -7,9 +7,8 @@ const Home = () =>{
     <HeroImage />
 
     <Card className="InfoText" style={{marginTop:'5vh', width:'100%'}}>
-      <Card.Body style={{background: '#EAEEED', 
-      textAlign:'center', 
-      padding:'5%'}}>
+      <Card.Body style={{background: '#EAEEED',
+      textAlign:'center'}}>
         <Card.Title >Om oss</Card.Title>
         <Card.Text style = {{fontSize:'22px'}}>
           <p>Fruktkorg är ett påhittat företag som levererar fruktkorgar till företag och privatpersoner.</p>
