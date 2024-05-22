@@ -62,7 +62,7 @@ function App() {
         { element: <Login />, path: '/login' },
         { element: <Cart />, path: '/cart' },
         { element: <Faves />, path: '/Faves' },
-        { element: <ProductPage />, path: '/productpage' }
+        { element: <ProductPage />, path: '/productpage/:id' }
 
       ],
 

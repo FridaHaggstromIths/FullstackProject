@@ -1,56 +1,60 @@
-import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from 'react'
+import { Row, Col, Card } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/Button'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
 
-function Sort() {
-  const [fruktkorg, setfruktkorg] = useState([])
+const GoToProductButton = ({ id }) => {
+  const navigate = useNavigate()
+
+  const goToProduct = (id) => {
+    navigate(`/productpage/${id}`)
+  }
+
+  return (
+    <Button variant="outline-success"size="lg" onClick={() => goToProduct(id)}>
+      Visa Produkt
+    </Button>
+  )
+}
+
+
+
+// Definiera prop-typer för GoToProductButton
+GoToProductButton.propTypes = {
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+}
+
+const Fruktkorg = () => {
+  const [fruktkorg, setFruktkorg] = useState([])
 
   useEffect(() => {
     fetch('/fruktkorg')
       .then((response) => response.json())
-      .then((data) => setfruktkorg (data))
-
+      .then((data) => setFruktkorg(data))
   }, [])
 
   return (
     <Row xs={1} md={2} className="g-4">
-    {fruktkorg.map((frukt) => (
-      <Col key={frukt.id}>
-        <Card>
-          <Card.Img variant="top" src={frukt.img} alt="en bild på en fruktkorg"/>
-          <Card.Body>
-            <Card.Title>{frukt.titel}</Card.Title>
-            <Card.Text>
-              {frukt.info}
-            </Card.Text>
-            <Button variant="success"size="lg"as={Link} to="/productpage">Visa</Button>{' '}
-          </Card.Body>
-        </Card>
-      </Col>
-    ))}
-  </Row>
-)
+      {fruktkorg.map((frukt) => (
+        <Col key={frukt.id}>
+          <Card>
+            <Card.Img variant="top" src={frukt.img} alt="en bild på en fruktkorg"/>
+            <Card.Body>
+              <Card.Title>{frukt.titel}</Card.Title>
+              <Card.Text>
+                {frukt.info}
+              </Card.Text>
+              <GoToProductButton id={frukt.id} />
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  )
 }
 
-export default Sort
-
-
-
-{/* <div>
-            <h1>Hej test fruktkorg h1 frontend Sort</h1>
-            <ul>
-                {fruktkorg.map((frukt) => (
-                    <li key={frukt.id}>
-                        {frukt.titel}
-                        {frukt.info}
-                        <img src={frukt.img} alt={frukt.title} />
-                    </li>
-                ))}
-            </ul>
-
-        </div> */}
+export default Fruktkorg
