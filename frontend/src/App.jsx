@@ -22,7 +22,7 @@ import {
 function Root() {
   return (
     <>
-    <Navbar fixed="top"  bg="light" data-bs-theme="light">
+    <Navbar static="top"  bg="light" data-bs-theme="light">
         <Container>
         <Navbar.Brand as={Link} to="/">Fruktkorg {/* <img src="/public/Kvalitetskontroll.jpg" alt="test"/> */}</Navbar.Brand>
           <Nav className="me-auto">
@@ -38,7 +38,7 @@ function Root() {
           <Outlet />
           <Footer />
         </main>
-    
+
     </>
   )
 }

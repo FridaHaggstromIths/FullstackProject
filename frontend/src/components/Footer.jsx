@@ -1,12 +1,13 @@
 import { Container, Row, Col, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function Footer() {
     return(
-        <footer>
+        <footer >
             <Container fluid>
                 <Row bg="light" data-bs-theme="light">
-                    <Col className="mx-5"> 
+                    <Col className="mx-5">
                     <h2>FRUKTKORG</h2>
                     <p>Frukt för alla tillfällen</p>
                     </Col>
