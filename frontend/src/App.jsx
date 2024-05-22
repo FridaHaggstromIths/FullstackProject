@@ -12,6 +12,7 @@ import Sort from './components/Sort'
 import ProductPage from './components/ProductPage'
 //import NavBarImage from './components/NavBarImage.jsx'
 import Footer from './components/Footer'
+import './App.css'
 
 
 import {
@@ -26,12 +27,11 @@ function Root() {
     <Navbar static="top"  bg="light" data-bs-theme="light">
         <Container>
         <Navbar.Brand as={Link} to="/">Fruktkorg {/* <img src="/public/Kvalitetskontroll.jpg" alt="test"/> */}</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/sort">Sortiment</Nav.Link>
-            <Nav.Link as={Link} to="/login">Logga in</Nav.Link>
-            <Nav.Link as={Link} to="/faves">Favoriter</Nav.Link>
-            <Nav.Link as={Link} to="/cart">Varukorg</Nav.Link>
-            <Nav.Link as={Link} to="/productpage">Produktsida</Nav.Link>
+          <Nav className="ms-auto">
+            <Nav.Link as={Link} to="/sort">S</Nav.Link>
+            <Nav.Link as={Link} to="/login">L</Nav.Link>
+            <Nav.Link as={Link} to="/faves">F</Nav.Link>
+            <Nav.Link as={Link} to="/cart">V</Nav.Link>
             {/* <NavBarImage /> */}
           </Nav>
         </Container>
