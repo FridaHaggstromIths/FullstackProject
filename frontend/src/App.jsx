@@ -13,6 +13,11 @@ import ProductPage from './components/ProductPage'
 //import NavBarImage from './components/NavBarImage.jsx'
 import Footer from './components/Footer'
 import './App.css'
+//Navbar ikoner
+import { BsShopWindow } from "react-icons/bs";
+import { BsBasket } from "react-icons/bs";
+import { GoPerson } from "react-icons/go";
+import { FaRegHeart } from "react-icons/fa";
 
 
 import {
@@ -24,16 +29,19 @@ import {
 function Root() {
   return (
     <>
-    <Navbar static="top"  bg="light" data-bs-theme="light">
+    <Navbar collapseOnSelect expand="lg" static="top"  bg="light" data-bs-theme="light">
         <Container>
-        <Navbar.Brand as={Link} to="/">Fruktkorg {/* <img src="/public/Kvalitetskontroll.jpg" alt="test"/> */}</Navbar.Brand>
+          <Navbar.Brand className='Navhome' as={Link} to="/">Fruktkorg {/* <img src="/public/Kvalitetskontroll.jpg" alt="test"/> */}</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/sort">S</Nav.Link>
-            <Nav.Link as={Link} to="/login">L</Nav.Link>
-            <Nav.Link as={Link} to="/faves">F</Nav.Link>
-            <Nav.Link as={Link} to="/cart">V</Nav.Link>
+            <Nav.Link className="nav-link" style={{ padding: '3vh'}} as={Link} to="/sort"><BsShopWindow /></Nav.Link>
+            <Nav.Link style={{padding:'3vh'}} as={Link} to="/login"><GoPerson /></Nav.Link>
+            <Nav.Link style={{padding:'3vh'}} as={Link} to="/faves"><FaRegHeart /></Nav.Link>
+            <Nav.Link style={{padding:'3vh'}} as={Link} to="/cart"><BsBasket /></Nav.Link>
             {/* <NavBarImage /> */}
-          </Nav>
+            </Nav>
+            </Navbar.Collapse>
         </Container>
     </Navbar>
         <main>
