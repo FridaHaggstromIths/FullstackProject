@@ -9,6 +9,7 @@ import Cart from './components/Cart'
 import Home from './components/Home'
 import Faves from './components/Faves'
 import Sort from './components/Sort'
+import ProductPage from './components/ProductPage'
 //import NavBarImage from './components/NavBarImage.jsx'
 import Footer from './components/Footer'
 import './App.css'
@@ -52,7 +53,8 @@ function App() {
         { element: <Sort />, path: '/Sort' },
         { element: <Login />, path: '/login' },
         { element: <Cart />, path: '/cart' },
-        { element: <Faves />, path: '/Faves' }
+        { element: <Faves />, path: '/Faves' },
+        { element: <ProductPage />, path: '/productpage' }
 
       ],
 
