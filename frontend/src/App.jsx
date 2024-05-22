@@ -22,10 +22,10 @@ import {
 function Root() {
   return (
     <>
-    <Navbar fixed="top"  bg="light" data-bs-theme="light">
+    <Navbar static="top"  bg="light" data-bs-theme="light">
         <Container>
         <Navbar.Brand as={Link} to="/">Fruktkorg {/* <img src="/public/Kvalitetskontroll.jpg" alt="test"/> */}</Navbar.Brand>
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             <Nav.Link as={Link} to="/sort">Sortiment</Nav.Link>
             <Nav.Link as={Link} to="/login">Logga in</Nav.Link>
             <Nav.Link as={Link} to="/faves">Favoriter</Nav.Link>
@@ -38,7 +38,7 @@ function Root() {
           <Outlet />
           <Footer />
         </main>
-    
+
     </>
   )
 }
