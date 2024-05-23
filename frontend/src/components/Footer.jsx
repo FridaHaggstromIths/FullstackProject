@@ -1,22 +1,22 @@
 import { Container, Row, Col, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 function Footer() {
     return(
-        <footer >
+        <footer  style={{marginTop:'5vh'}}>
             <Container fluid>
                 <Row bg="light" data-bs-theme="light">
-                    <Col className="mx-5">
+                    <Col className="mx-5"> 
                     <h2>FRUKTKORG</h2>
                     <p>Frukt för alla tillfällen</p>
                     </Col>
                     <Col>
-                        <Nav className='flex-column fs-5'>
-                        <Nav.Link as={Link} to="/sort">Sortiment</Nav.Link>
-                        <Nav.Link as={Link} to="/login">Logga in</Nav.Link>
-                        <Nav.Link as={Link} to="/faves">Favoriter</Nav.Link>
-                        <Nav.Link as={Link} to="/cart">Varukorg</Nav.Link>
+                        <Nav style={{padding:'10px'}} className='flex-column fs-5'>
+                        <Nav.Link as={Link} to="/sort"className="text-dark">Sortiment</Nav.Link>
+                        <Nav.Link as={Link} to="/login"className="text-dark">Logga in</Nav.Link>
+                        <Nav.Link as={Link} to="/faves"className="text-dark">Favoriter</Nav.Link>
+                        <Nav.Link as={Link} to="/cart"className="text-dark">Varukorg</Nav.Link>
                             </Nav>
                             </Col>
                     <Col>
