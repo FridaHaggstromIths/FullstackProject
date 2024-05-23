@@ -1,5 +1,6 @@
 import { Container, Row, Col, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import SignUp from './SignUp.jsx'
 
 
 function Footer() {
@@ -9,7 +10,7 @@ function Footer() {
                 <Row bg="light" data-bs-theme="light">
                     <Col className="mx-5"> 
                     <h2>FRUKTKORG</h2>
-                    <p>Frukt för alla tillfällen</p>
+                    <p>Frukt för alla tillfällen</p> <SignUp />
                     </Col>
                     <Col>
                         <Nav style={{padding:'10px'}} className='flex-column fs-5'>
