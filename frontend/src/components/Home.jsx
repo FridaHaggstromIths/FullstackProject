@@ -1,6 +1,7 @@
 import HeroImage from './HeroImage.jsx'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import { Link } from 'react-router-dom'
 
 const Home = () =>{
   return (<div>
@@ -19,7 +20,7 @@ const Home = () =>{
           <p>Utforska hela vårat sortiment här:</p>
 
         </Card.Text>
-        <Button variant="outline-success"size="lg">Sortiment</Button>{' '}
+        <Button variant="success"size="lg"as={Link} to="/Sort">Sortiment</Button>
       </Card.Body>
     </Card>
     </div>
