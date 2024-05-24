@@ -63,7 +63,7 @@ function PopUp() {
         <Modal.Body>
           <>
         Prenumerera på vårat nyhetsbrev för att hålla koll på erbjudanden, säsongens frukt, tävlingar och massa annat kul!
-        <LoginForm handleSubmit={handleSubmit} />
+        <LoginForm handleSubmit={handleSubmit} onClick={handleSignUp} />
 
               </>
         </Modal.Body>

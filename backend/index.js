@@ -36,6 +36,8 @@ app.get('/productpage/:id', (req, res) => {
     })
 })
 
+app.post('/')
+
 // Middleware för att läsa statiska filer med express från mappen dist
 app.use(express.static(path.join(path.resolve(), 'dist')))
 

@@ -34,7 +34,7 @@ const ProductPage = () => {
   /* if (!product) return <div>Loading...</div> */
 
   return (
-    <Row xs={1} md={2} className="g-4">
+    <Row xs={1} md={2} className="g-4 justify-content-center">
         <Col key={product.id}>
           <Card style={{ backgroundColor: product.hex }}>
             <Card.Img variant="top" src={product.img} alt="en bild på en fruktkorg" />
@@ -42,7 +42,8 @@ const ProductPage = () => {
               <Card.Title>{product.titel}</Card.Title>
               <Card.Text>{product.info}</Card.Text>
               <Card.Text>{product.description}</Card.Text>
-              <Button id={product.id}variant="success"size="lg"as={Link} to="/cart">Visa</Button>
+              <Card.Text>{product.price}kr</Card.Text>
+              <Button id={product.id}variant="success"size="lg"as={Link} to="/cart">Lägg i varukorg</Button>
             </Card.Body>
           </Card>
         </Col>
