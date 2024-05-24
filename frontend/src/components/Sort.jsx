@@ -1,9 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+//import Button from 'react-bootstrap/Button'
+//import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 
-const GoToProductButton = ({ id }) => {
+/* const GoToProductButton = ({ id }) => {
   const navigate = useNavigate();
 
   const goToProduct = (id) => {
@@ -23,7 +25,7 @@ GoToProductButton.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
-};
+}; */
 
 const Fruktkorg = () => {
   const [fruktkorg, setFruktkorg] = useState([]);
@@ -40,13 +42,14 @@ const Fruktkorg = () => {
   return (
     <Row xs={1} md={2} className="g-4">
       {fruktkorg.map((frukt) => (
-        <Col key={frukt.id}>
+        <Col key={frukt.ID}>
           <Card>
             <Card.Img variant="top" src={frukt.img} alt="en bild på en fruktkorg" />
             <Card.Body>
               <Card.Title>{frukt.titel}</Card.Title>
               <Card.Text>{frukt.info}</Card.Text>
-              <GoToProductButton id={frukt.id} />
+              {/* <GoToProductButton id={frukt.id} /> */}
+              <Button id={frukt.ID}variant="success"size="lg"as={Link} to={`/productpage/${frukt.ID}`}>Visa</Button>
             </Card.Body>
           </Card>
         </Col>
