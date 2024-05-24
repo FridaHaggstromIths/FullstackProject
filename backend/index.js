@@ -36,6 +36,20 @@ app.get('/productpage/:id', (req, res) => {
     })
 })
 
+
+app.get('/users', (_req, res) => {
+    db.all('SELECT * FROM users', (err, rows) => {
+        if (err) {
+            console.error(err.message)
+            res.status(500).send('Database error')
+            return
+        }
+        res.json(rows)
+    })
+})
+
+
+
 // Middleware för att läsa statiska filer med express från mappen dist
 app.use(express.static(path.join(path.resolve(), 'dist')))
 
