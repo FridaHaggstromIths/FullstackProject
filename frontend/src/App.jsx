@@ -31,10 +31,10 @@ function Root() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link style={{ padding: '3vh' }} as={Link} to="/sort"><BsShopWindow /></Nav.Link>
-              <Nav.Link style={{ padding: '3vh' }} as={Link} to="/login"><GoPerson /></Nav.Link>
-              <Nav.Link style={{ padding: '3vh' }} as={Link} to="/faves"><FaRegHeart /></Nav.Link>
-              <Nav.Link style={{ padding: '3vh' }} as={Link} to="/cart"><BsBasket /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/sort"><BsShopWindow /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/login"><GoPerson /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/faves"><FaRegHeart /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/cart"><BsBasket /></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
