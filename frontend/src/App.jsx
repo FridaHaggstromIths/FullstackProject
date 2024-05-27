@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import Login from './components/Login.jsx';
+import Login from './components/Login.tsx';
 import Cart from './components/Cart.jsx';
 import Home from './components/Home.jsx';
 import Faves from './components/Faves.jsx';
@@ -31,10 +31,10 @@ function Root() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link className="nav-link" style={{ padding: '3vh' }} as={Link} to="/sort"><BsShopWindow /></Nav.Link>
-              <Nav.Link style={{ padding: '3vh' }} as={Link} to="/login"><GoPerson /></Nav.Link>
-              <Nav.Link style={{ padding: '3vh' }} as={Link} to="/faves"><FaRegHeart /></Nav.Link>
-              <Nav.Link style={{ padding: '3vh' }} as={Link} to="/cart"><BsBasket /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/sort"><BsShopWindow /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/login"><GoPerson /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/faves"><FaRegHeart /></Nav.Link>
+              <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/cart"><BsBasket /></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const sqlite3 = require('sqlite3').verbose()
+const bodyParser = require('body-parser')
 
 const app = express()
 
@@ -47,6 +48,32 @@ app.get('/users', (_req, res) => {
         res.json(rows)
     })
 })
+
+/*app.get('/newsletter', (req, res) => {
+    db.all('SELECT * FROM newsletter', (err, rows) => {
+        if (err) {
+            console.error(err.message)
+            res.status(500).send('Database error')
+            return
+        }
+        res.json(rows)
+    })
+})
+*/
+app.use(bodyParser.json())
+app.post('/', (req, res) => {
+    const { email } = req.body
+    if (!email) {
+        return res.status(400).send('Ingen email inlagd' )  
+      }
+    db.run('INSERT INTO newsletter (newsEmail) VALUES (?)', [email], (err, rows) => {
+        if (err) {
+            return res.status(500).send('Error inserting email into database')
+          }
+        res.json(rows)
+    })
+})
+
 
 
 
