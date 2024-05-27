@@ -1,17 +1,40 @@
 import React from 'react'
+import { useState } from 'react'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 
 interface Values {
   firstName: string
   lastName: string
   email: string
-  adress: string
-  postal: string
-  area: string
-  phone: string
+  password: string
 }
 
 const Login = () => {
+  const [addAccount, setaddAccount] = useState(false)
+
+  const handleSubmit = async (values: Values, { setSubmitting, setErrors }: FormikHelpers<Values>) => {
+    const { firstName, lastName, email, password } = values
+
+  try {
+    const response = await fetch('/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({firstName, lastName, email, password }),
+    })
+
+    if (!response.ok) {
+      throw new Error(`Error subscribing: ${response.statusText}`)
+    }
+
+    setaddAccount(true) // Prenumerera bara om email är unik?
+  } catch (error) {
+    console.error('Error subscribing:', error)
+    setErrors({ email: 'Du får redan vårat nyhetsbrev! Kul!' })
+  } finally {
+    setSubmitting(false)
+  }
+}
+
   return (
     <div>
       <h1>Skapa konto</h1>
@@ -20,21 +43,11 @@ const Login = () => {
           firstName: '',
           lastName: '',
           email: '',
-          adress:'',
-          postal:'',
-          area:'',
-          phone:'',
+          password:''
         }}
-        onSubmit={(
-          values: Values,
-          { setSubmitting }: FormikHelpers<Values>
-        ) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
-            setSubmitting(false)
-          }, 500);
-        }}
+        onSubmit={handleSubmit}
       >
+        {({ isSubmitting }) => (
         <Form>
           <label htmlFor="firstName">Förnamn</label>
           <Field id="firstName" 
@@ -51,36 +64,19 @@ const Login = () => {
           <Field
             id="email"
             name="email"
-            placeholder="john@acme.com"
+            placeholder="harrypotter@gmail.com"
             type="email"
           />
-          <label htmlFor="adress">Adress</label>
-          <Field 
-          id="adress" 
-          name="adress" 
-          placeholder="Adress" />
-          <label htmlFor ="postal"> Postnummer</label>
-          <Field
-          id="postal"
-          name="postal"
-          placeholder="Postnr"
-          />
-          <label htmlFor="area">Ort</label>
-          <Field
-          id="area"
-          name="area"
-          placeholder="Ort"
-          />
-          <label htmlFor="phone">Mobil</label>
-          <Field
-            id="phone"
-            name="phone"
-            placeholder="Mobilnr"
-          />
+          <label htmlFor="password">Password</label>
+            <Field
+            id="password" 
+            name="password" 
+            placeholder="Password" 
+            type="password" />
 
-
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={isSubmitting}>Submit</button>
         </Form>
+        )}
       </Formik>
     </div>
   )
