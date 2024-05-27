@@ -12,11 +12,10 @@ interface Values {
 const Login = () => {
   const [addAccount, setaddAccount] = useState(false)
 
-  const handleSubmit = async (values: Values, { setSubmitting, setErrors }: FormikHelpers<Values>) => {
-    const { firstName, lastName, email, password } = values
+  const handleSubmit = async ({ firstName, lastName, email, password }: Values, { setSubmitting, setErrors }: FormikHelpers<Values>) => {
 
   try {
-    const response = await fetch('/users', {
+    const response = await fetch('/Login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({firstName, lastName, email, password }),
@@ -78,6 +77,7 @@ const Login = () => {
         </Form>
         )}
       </Formik>
+      {addAccount && <p>Account successfully created!</p>}
     </div>
   )
 }

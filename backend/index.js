@@ -38,7 +38,7 @@ app.get('/productpage/:id', (req, res) => {
 })
 
 
-app.get('/users', (_req, res) => {
+app.get('/Login', (req, res) => {
     db.all('SELECT * FROM users', (err, rows) => {
         if (err) {
             console.error(err.message)
@@ -48,9 +48,11 @@ app.get('/users', (_req, res) => {
         res.json(rows)
     })
 })
+
 app.use(bodyParser.json())
-app.post('/users', (_req, res) => {
-    db.run('INSERT INTO users (firstName, lastName, email, password) VALUES (?,?,?,?)',[firstName, lastName, email, password], (err, rows) => {
+app.post('/Login', (req, res) => {
+    const { firstName, lastName, email, password } = req.body
+    db.run('INSERT INTO users (firstName, lastName, email, password) VALUES (?,?,?,?)', [firstName, lastName, email, password], (err, rows) => {
         if (err) {
             return res.status(500).send('Error inserting email into database')
           }
