@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+import { useState } from 'react'
+import Modal from 'react-bootstrap/Modal'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import PropTypes from 'prop-types'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Ogiltig email').required('Vänligen fyll i din email'),
-});
+})
 
 const LoginForm = ({ handleSubmit }) => (
   <Formik
@@ -26,37 +26,37 @@ const LoginForm = ({ handleSubmit }) => (
       </Form>
     )}
   </Formik>
-);
+)
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-};
+}
 
 const PopUp = () => {
-  const [subscribe, setSubscribe] = useState(false);
+  const [subscribe, setSubscribe] = useState(false)
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    const { email } = values;
+    const { email } = values
 
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
-      });
+      })
 
       if (!response.ok) {
         throw new Error(`Error subscribing: ${response.statusText}`)
       }
 
-      setSubscribe(true) // Only set subscribe to true if the subscription request succeeds
+      setSubscribe(true) // Prenumerera bara om email är unik?
     } catch (error) {
       console.error('Error subscribing:', error)
       setErrors({ email: 'Du får redan vårat nyhetsbrev! Kul!' })
     } finally {
       setSubmitting(false)
     }
-  };
+  }
 
   return (
     <>

@@ -48,7 +48,15 @@ app.get('/users', (_req, res) => {
         res.json(rows)
     })
 })
-
+app.use(bodyParser.json())
+app.post('/users', (_req, res) => {
+    db.run('INSERT INTO users (firstName, lastName, email, password) VALUES (?,?,?,?)',[firstName, lastName, email, password], (err, rows) => {
+        if (err) {
+            return res.status(500).send('Error inserting email into database')
+          }
+        res.json(rows) 
+    })
+})
 /*app.get('/newsletter', (req, res) => {
     db.all('SELECT * FROM newsletter', (err, rows) => {
         if (err) {
@@ -60,7 +68,6 @@ app.get('/users', (_req, res) => {
     })
 })
 */
-app.use(bodyParser.json())
 app.post('/', (req, res) => {
     const { email } = req.body
     if (!email) {
