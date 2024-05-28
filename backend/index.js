@@ -64,6 +64,20 @@ app.post('/Login', (req, res) => {
     })
 })
 
+//Kolla om konto finns inför inloggning
+app.post('/checkAccount', (req, res) => {
+    const {email, password} = req.body
+    db.get('SELECT email, password FROM users WHERE email = ? AND password = ?', [email, password], (err, row) => {
+        if (err) {
+            console.error(err.message)
+            return res.status(500).send('Big fail')
+        }
+        if (!row) {// om email inte finns eller lösen inte finns
+            return res.status(401).send('Ogiltig email eller lösenord')
+        }
+        res.status(200).send('Login lyckades')
+    })
+})
 
 // Hantera nyhetsbrevsprenumeration utan att lägga till nya användare
 app.post('/subscribe', (req, res) => {

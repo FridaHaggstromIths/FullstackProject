@@ -1,6 +1,7 @@
 
 import React, {useState} from 'react'
 import HeroStrip from './HeroStripImage'
+import { Button } from 'react-bootstrap'
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
@@ -17,16 +18,29 @@ interface Values {
 const LoginForReal = () => {
     const [addAccount, setAddAccount] = useState(false)
 
-    const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-      try {
-        const response = await fetch('/Login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(values),
-        })
-        if (!response.ok) {
-            throw new Error(`Error subscribing: ${response.statusText}`)
+    const handleSubmit = async (values: Values, { setSubmitting, setErrors }: FormikHelpers<Values>) => {
+        try {
+          const response = await fetch('/checkAccount', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values),
+          })
+    
+          if (!response.ok) {
+            const errorData = await response.json()
+            setErrors({ email: ' ', password: errorData.message || 'Något gick fel, försök igen.' })
+            setSubmitting(false)
+            return
           }
+            setAddAccount(true)
+            alert('Välkommen!')
+        } catch (error) {
+          console.error('Error login:', error)
+          setErrors({ email: ' ', password: 'Något gick fel, försök igen.' })
+        } finally {
+          setSubmitting(false)
+        }
+}
 
   return (
     <>
@@ -40,18 +54,10 @@ const LoginForReal = () => {
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-    
-        onSubmit={(
-          values: Values,
-          { setSubmitting }: FormikHelpers<Values>
-        ) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
-            setSubmitting(false)
-          }, 500)
-        }}
-      >
-        <Form>
+    >
+        {({ isSubmitting }) => (
+        <Form style={{ maxWidth: '400px' }}>
+            <div className="mb-3 d-flex flex-column align-items-center">
           <label htmlFor="email">Email</label>
           <Field
             id="email"
@@ -60,6 +66,8 @@ const LoginForReal = () => {
             type="email"
           />
           <ErrorMessage name="email" component="div" className="text-danger" />
+          </div>
+          <div className="mb-3 d-flex flex-column align-items-center">
           <label htmlFor="email">Lösenord</label>
           <Field
             id="password"
@@ -68,13 +76,15 @@ const LoginForReal = () => {
             type="password"
           />
           <ErrorMessage name="password" component="div" className="text-danger" />
-
-          <button type="submit">Logga in</button>
+          </div>
+          <Button variant="success"type="submit" disabled={isSubmitting}>Logga in</Button>
         </Form>
+        )}
       </Formik>
     </div>
     </>
   )
 }
+
 
 export default LoginForReal

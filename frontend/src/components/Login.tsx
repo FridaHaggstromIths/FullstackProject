@@ -31,7 +31,7 @@ const Login = () => {
       })
 
       if (!response.ok) {
-        throw new Error(`Error subscribing: ${response.statusText}`)
+        throw new Error(`Ingen respons`)
       }
 
       setAddAccount(true)
