@@ -24,6 +24,10 @@ font-size: 48px;
     animation: jump 2s ease
   }
   
-.stripImage {
-  width: 100vh;
+.SkapaKonto {
+  margin: 3vh;
 }
+.orAccount {
+  margin-top:3vh ;
+}
+

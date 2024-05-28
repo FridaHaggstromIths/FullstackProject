@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Row } from 'react-bootstrap'
 import HeroStrip from './HeroStripImage'
+import { Link } from 'react-router-dom'
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Förnamn är obligatoriskt'),
@@ -40,14 +41,14 @@ const Login = () => {
     } finally {
       setSubmitting(false)
     }
-  };
+  }
 
   return (
     <>
       <HeroStrip />
-      <Card>
-        <div className="d-flex flex-column align-items-center vh-100 mt-6">
-          <h1>Skapa konto</h1>
+      
+        <div className="d-flex flex-column align-items-center vh-95 mt-4 mb-1">
+          <h1 className='SkapaKonto'>Skapa konto</h1>
           <Formik
             initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
             validationSchema={validationSchema}
@@ -102,13 +103,21 @@ const Login = () => {
                 <Button variant="success" type="submit" disabled={isSubmitting}>
                   Skapa konto
                 </Button>
-                <Button variant="outline-success">Logga in</Button>
               </Form>
             )}
           </Formik>
           {addAccount && <p>Hurra du har skaffat konto hos oss!</p>}
+          <Row className ="d-flex flex-column align-items-center">
+          <p className='orAccount'> Eller har du redan ett konto hos oss?</p>
+          <Link to="/LoginForReal" style={{ textDecoration: 'none', width: '100%' }}>
+            <Button variant="outline-success" style={{ width: '100%' }}>
+              Logga in
+            </Button>
+          </Link>
+          </Row>
+
         </div>
-      </Card>
+      
     </>
   )
 }
