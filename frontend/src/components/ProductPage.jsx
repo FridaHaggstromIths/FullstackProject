@@ -7,7 +7,6 @@ import HeroStrip from './HeroStripImage'
 const ProductPage = () => {
   const { id } = useParams()
   const [product, setProduct] = useState([])
-  /* const [error, setError] = useState([]) */
 
   useEffect(() => {
     console.log(`Fetching product with id: ${id}`)
@@ -15,24 +14,11 @@ const ProductPage = () => {
     fetch(`/productpage/${id}`)
       .then(response => response.json())
       .then((data) => setProduct(data))
-
-
-        /* if (!response.ok) {
-          throw new Error('Network response was not ok')
-        } */
-        /* return response.json()
-      })
-      .then(data => {
-        setProduct(data)
-      })
       .catch(error => {
         console.error('There was an error fetching the product!', error)
-        setError(error.message)
-      }) */
+      })
   }, [id])
 
-  /* if (error) return <div>Error: {error}</div> */
-  /* if (!product) return <div>Loading...</div> */
 
   return (
     <>
