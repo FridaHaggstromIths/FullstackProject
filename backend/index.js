@@ -64,6 +64,66 @@ app.post('/Login', (req, res) => {
     });
 });
 
+
+// Hantera nyhetsbrevsprenumeration utan att lägga till nya användare
+app.post('/subscribe', (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).send('Ingen email inlagd');
+    }
+
+    // Kontrollera om användaren redan finns
+    db.get('SELECT id, newsletter_sub FROM users WHERE email = ?', [email], (err, row) => {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).send('Du får redan vårt nyhetsbrev!1');
+        }
+
+        if (row) {
+            // Användaren finns redan
+            if (row.newsletter_sub === 1) {
+                return res.status(400).send('Du får redan vårt nyhetsbrev!2');
+            } else {
+                // Uppdatera prenumerationsstatus i users tabellen
+                db.run('UPDATE users SET newsletter_sub = 1 WHERE id = ?', [row.id], (err) => {
+                    if (err) {
+                        console.error(err.message);
+                        return res.status(500).send('Du får redan vårt nyhetsbrev!3');
+                    }
+                    // Lägg till i newsletter tabellen
+                    db.run('INSERT INTO newsletter (newsEmail, user_id) VALUES (?, ?)', [email, row.id], (err) => {
+                        if (err) {
+                            console.error(err.message);
+                            return res.status(500).send('Du får redan vårt nyhetsbrev!4');
+                        }
+                        return res.status(200).send('Prenumeration uppdaterad och lagd till i nyhetsbrev');
+                    });
+                });
+            }
+        } else {
+            // Användaren finns inte, lägg till i newsletter tabellen utan user_id
+            db.run('INSERT INTO newsletter (newsEmail) VALUES (?)', [email], (err) => {
+                if (err) {
+                    console.error(err.message);
+                    return res.status(500).send('Du får redan vårt nyhetsbrev!5');
+                }
+                return res.status(200).send('Prenumeration lagd till i nyhetsbrev');
+            });
+        }
+    });
+});
+
+
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Redo på http://localhost:${PORT}`);
+});
+
+//Fridas slaskkod för nyhetsbrev, Beas originalkod finns under detta.
+/*
 // Hantera nyhetsbrevsprenumeration utan att lägga till nya användare
 app.post('/subscribe', (req, res) => {
     const { email } = req.body;
@@ -97,12 +157,10 @@ app.post('/subscribe', (req, res) => {
             return res.status(404).send('Användaren finns inte');
         }
     });
-});
+}); */
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Redo på http://localhost:${PORT}`);
-});
+
+
 
 
 /* const express = require('express')
