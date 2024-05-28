@@ -96,8 +96,8 @@ app.post('/subscribe', (req, res) => {
             // Användaren finns inte, returnera ett felmeddelande
             return res.status(404).send('Användaren finns inte');
         }
-    });
-});
+    })
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

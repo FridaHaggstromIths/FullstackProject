@@ -21,6 +21,7 @@ import {
   Outlet,
   RouterProvider
 } from 'react-router-dom';
+import LoginForReal from './components/LoginForReal.tsx';
 
 function Root() {
   return (
@@ -58,7 +59,8 @@ function App() {
         { element: <Login />, path: '/login' },
         { element: <Cart />, path: '/cart' },
         { element: <Faves />, path: '/faves' },
-        { element: <ProductPage />, path: '/productpage/:id' }
+        { element: <ProductPage />, path: '/productpage/:id' },
+        { element: <LoginForReal />, path: '/LoginForReal'}
       ]
     }
   ]);
