@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { Button, Card, Row } from 'react-bootstrap'
+import { Button, Row } from 'react-bootstrap'
 import HeroStrip from './HeroStripImage'
 import { Link } from 'react-router-dom'
 
@@ -28,7 +28,7 @@ const Login = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
-      });
+      })
 
       if (!response.ok) {
         throw new Error(`Error subscribing: ${response.statusText}`)
@@ -50,7 +50,12 @@ const Login = () => {
         <div className="d-flex flex-column align-items-center vh-95 mt-4 mb-1">
           <h1 className='SkapaKonto'>Skapa konto</h1>
           <Formik
-            initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
+            initialValues={{ 
+              firstName: '', 
+              lastName: '', 
+              email: '', 
+              password: '' 
+            }}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
