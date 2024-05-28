@@ -5,7 +5,7 @@ import SignUp from './SignUp.jsx'
 
 function Footer() {
     return(
-        <footer  style={{marginTop:'5vh'}}>
+        <footer  style={{marginTop:'5vh',paddingTop:'4vh', borderTop: '1px solid #ccc' }}>
             <Container fluid>
                 <Row bg="light" data-bs-theme="light">
                     <Col className="mx-5"> 
