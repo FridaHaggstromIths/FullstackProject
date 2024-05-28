@@ -2,6 +2,7 @@ import { useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { Row, Col, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import HeroStrip from './HeroStripImage'
 
 const ProductPage = () => {
   const { id } = useParams()
@@ -34,6 +35,8 @@ const ProductPage = () => {
   /* if (!product) return <div>Loading...</div> */
 
   return (
+    <>
+    < HeroStrip />
     <Row xs={1} md={2} className="g-4 justify-content-center">
         <Col key={product.id}>
           <Card style={{ backgroundColor: product.hex }}>
@@ -48,6 +51,7 @@ const ProductPage = () => {
           </Card>
         </Col>
     </Row>
+    </>
 )
 }
 

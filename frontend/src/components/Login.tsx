@@ -1,6 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import { Formik, Field, Form, FormikHelpers } from 'formik'
+import Form from 'react-bootstrap/Form'
+import { Formik, FormikHelpers } from 'formik'
+import { Button, Card } from 'react-bootstrap'
+import * as Yup from 'yup'
+import HeroStrip from './HeroStripImage'
 
 interface Values {
   firstName: string
@@ -8,7 +12,12 @@ interface Values {
   email: string
   password: string
 }
-
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required('Förnamn är obligatoriskt'),
+  lastName: Yup.string().required('Efternamn är obligatoriskt'),
+  email: Yup.string().email('Ogiltig e-postadress').required('E-post är obligatoriskt'),
+  password: Yup.string().min(6, 'Lösenord måste vara minst 6 tecken långt').required('Lösenord är obligatoriskt'),
+})
 const Login = () => {
   const [addAccount, setaddAccount] = useState(false)
 
@@ -34,8 +43,10 @@ const Login = () => {
   }
 }
 
-  return (
-    <div>
+  return (<>
+< HeroStrip />
+    <Card>
+    <div className="d-flex flex-column align-items-center vh-100 justify-content-center">
       <h1>Skapa konto</h1>
       <Formik
         initialValues={{
@@ -44,41 +55,43 @@ const Login = () => {
           email: '',
           password:''
         }}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
-        <Form>
-          <label htmlFor="firstName">Förnamn</label>
-          <Field id="firstName" 
-          name="firstName" 
-          placeholder="John" />
+        {({ isSubmitting, values }) => (
+        <Form style={{ maxWidth: '400px' }}>
 
-          <label htmlFor="lastName">Efternamn</label>
-          <Field 
-          id="lastName" 
-          name="lastName" 
-          placeholder="Doe" />
+<Form.Group className="mb-3" controlId="formbasicfirstName">
+        <Form.Label htmlFor="firstName">Förnamn</Form.Label>
+        <Form.Control
+          type="text"
+          name="firstName"
+          placeholder="Alice"
+        />
+          </Form.Group>
 
-          <label htmlFor="email">Email</label>
-          <Field
-            id="email"
-            name="email"
-            placeholder="harrypotter@gmail.com"
-            type="email"
-          />
-          <label htmlFor="password">Password</label>
-            <Field
-            id="password" 
-            name="password" 
-            placeholder="Password" 
-            type="password" />
+          <Form.Group className="mb-3" controlId="formbasiclastName">
+          <Form.Label htmlFor="lastName">Efternamn</Form.Label>
+          <Form.Control type="text" placeholder="Bobsson"/>
+          </Form.Group>
 
-          <button type="submit" disabled={isSubmitting}>Submit</button>
+          <Form.Group className="mb-3" controlId="formbasicEmail">
+          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Control type="email" placeholder="Cesar@fu.com" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formbasicPassword">
+          <Form.Label htmlFor="password">Lösenord</Form.Label>
+          <Form.Control type="password" placeholder="Lösenord" />
+          </Form.Group>
+          <Button variant="success" type="submit" disabled={isSubmitting}>Skapa konto</Button>
         </Form>
         )}
       </Formik>
-      {addAccount && <p>Account successfully created!</p>}
-    </div>
+      </div>
+      {addAccount && <p>Hurra du har skaffat konto hos oss!</p>}
+    </Card>
+    </>
   )
 }
 

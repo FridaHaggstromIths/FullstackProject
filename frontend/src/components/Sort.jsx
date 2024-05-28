@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Row, Col, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import HeroStrip from './HeroStripImage'
 
 
 const Fruktkorg = () => {
@@ -16,6 +17,8 @@ const Fruktkorg = () => {
   }, [])
 
   return (
+    <>
+    < HeroStrip />
     <Row xs={1} md={2} className="g-4">
       {fruktkorg.map((frukt) => (
         <Col key={frukt.ID}>
@@ -30,6 +33,7 @@ const Fruktkorg = () => {
         </Col>
       ))}
     </Row>
+    </>
   )
 }
 
