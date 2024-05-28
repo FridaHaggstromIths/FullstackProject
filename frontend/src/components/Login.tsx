@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Button, Card } from 'react-bootstrap';
-import HeroStrip from './HeroStripImage';
+import React, { useState } from 'react'
+import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { Button, Card } from 'react-bootstrap'
+import HeroStrip from './HeroStripImage'
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Förnamn är obligatoriskt'),
@@ -33,7 +33,7 @@ const Login = () => {
         throw new Error(`Error subscribing: ${response.statusText}`)
       }
 
-      setAddAccount(true);
+      setAddAccount(true)
     } catch (error) {
       console.error('Error subscribing:', error)
       setErrors({ email: 'Du får redan vårat nyhetsbrev! Kul!' })
