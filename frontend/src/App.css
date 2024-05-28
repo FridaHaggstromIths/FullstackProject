@@ -24,3 +24,6 @@ font-size: 48px;
     animation: jump 2s ease
   }
   
+.stripImage {
+  width: 100vh;
+}
