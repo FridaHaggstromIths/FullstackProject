@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+import { useState } from 'react'
+import Modal  from 'react-bootstrap/Modal'
+import { Button } from 'react-bootstrap'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import PropTypes from 'prop-types'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Ogiltig email').required('Vänligen fyll i din email'),
@@ -15,14 +16,15 @@ const LoginForm = ({ handleSubmit }) => (
     onSubmit={handleSubmit}
   >
     {({ isSubmitting }) => (
-      <Form>
-        <label>
-          Email: <Field type="email" name="email" />
+      <Form className="d-flex flex-column align-items-start gap-3">
+        <label className='mt-3'>
+          Email: <Field type="email" name="email" className="mb-3"/>
           <ErrorMessage name="email" component="div" />
         </label>
-        <button type="submit" disabled={isSubmitting}>
+        <Button variant="success" type="submit" disabled={isSubmitting}
+        className='mx-3'>
           Prenumerera
-        </button>
+        </Button>
       </Form>
     )}
   </Formik>
@@ -33,10 +35,11 @@ LoginForm.propTypes = {
 };
 
 const PopUp = () => {
-  const [subscribe, setSubscribe] = useState(false);
+  const [subscribe, setSubscribe] = useState(false)
+  const [signedUp, setSignedUp] = useState(false)
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    const { email } = values;
+    const { email } = values
 
     try {
       const response = await fetch('/subscribe', {
@@ -47,27 +50,33 @@ const PopUp = () => {
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(errorText);
+        throw new Error(errorText)
       }
 
       setSubscribe(true); // Prenumerera bara om email är unik
+      setSignedUp(true) //Visar att du prenumererar
     } catch (error) {
-      console.error('Error subscribing:', error);
-      setErrors({ email: error.message });
+      console.error('Error subscribing:', error)
+      setErrors({ email: error.message })
     } finally {
-      setSubmitting(false);
+      setSubmitting(false)
     }
-  };
+  }
+
+  const handleCloseModal = () => {
+    setSubscribe(true)
+    setSignedUp(false)
+  }
 
   return (
     <>
-      <p className="SignUpButton" onClick={() => setSubscribe(false)} style={{ cursor: 'pointer' }}>
+      <p className="SignUpButton" onClick={() => {setSubscribe(false), setSignedUp(false) }} style={{ cursor: 'pointer' }}>
         Nyhetsbrev
       </p>
 
       <Modal
-        show={!subscribe}
-        onHide={() => setSubscribe(true)}
+        show={!subscribe || signedUp}
+        onHide={handleCloseModal}
         backdrop="static"
         keyboard={false}
         size="lg"
@@ -82,7 +91,7 @@ const PopUp = () => {
           ) : (
             <>
               Prenumerera på vårt nyhetsbrev för att hålla koll på erbjudanden, säsongens frukt, tävlingar och annat kul!
-              <LoginForm handleSubmit={handleSubmit} />
+                <LoginForm handleSubmit={handleSubmit} />
             </>
           )}
         </Modal.Body>
