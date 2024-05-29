@@ -37,7 +37,7 @@ const Login = () => {
       setAddAccount(true)
     } catch (error) {
       console.error('Error subscribing:', error)
-      setErrors({ email: 'Du får redan vårat nyhetsbrev! Kul!' })
+      setErrors({ email: 'Email redan registrerad hos oss' })
     } finally {
       setSubmitting(false)
     }
