@@ -24,19 +24,33 @@ const ProductPage = () => {
     <>
     < HeroStrip />
     <Row xs={1} md={2} className="g-4 justify-content-center">
-        <Col key={product.id}>
-          <Card style={{ backgroundColor: product.hex }}>
-            <Card.Img variant="top" src={product.img} alt="en bild på en fruktkorg" />
-            <Card.Body>
-              <Card.Title>{product.titel}</Card.Title>
-              <Card.Text>{product.info}</Card.Text>
-              <Card.Text>{product.description}</Card.Text>
-              <Card.Text>{product.price}kr</Card.Text>
-              <Button id={product.id}variant="success"size="lg"as={Link} to="/cart">Lägg i varukorg</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-    </Row>
+    <Col key={product.id} className="text-center">
+      <img src={product.img} alt="en bild på en fruktkorg" className="img-fluid" /> 
+    </Col>
+    <Col key={product.id} className="d-flex align-items-center justify-content-center"> 
+      <div className="p-1 custom-margin"style={{ margin: '2vh'}}> 
+        <Card style={{ backgroundColor: product.hex }} className="w-100 h-100 m-10">
+          <Card.Body className="d-flex flex-column justify-content-center text-center"> 
+            <Card.Title className="display-4">{product.titel}</Card.Title>
+            <Card.Text className="fs-5">{product.info}</Card.Text>
+            <Card.Text className="fs-5">{product.description}</Card.Text>
+            <Card.Text className="display-4">{product.price}kr</Card.Text>
+            <Button 
+              id={product.id}
+              variant="success"
+              size="lg"
+              as={Link} 
+              to="/cart"
+              className="mx-auto w-50"
+              style={{margin:'1vh'}}>
+              Lägg i varukorg
+            </Button>
+          </Card.Body>
+        </Card>
+      </div>
+    </Col>
+</Row>
+    
     </>
 )
 }
