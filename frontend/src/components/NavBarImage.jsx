@@ -1,7 +1,7 @@
-import Image from 'react-bootstrap/Image';
+import Image from 'react-bootstrap/Image'
 
 function NavBarPic() {
-  return <Image src="/Kvalitetskontroll.jpg" fluid />;
+  return <Image fluid src='/kvalitetskontroll.jpg' />;
 }
 
 export default NavBarPic

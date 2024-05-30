@@ -9,6 +9,7 @@ import Cart from './components/Cart.jsx';
 import Home from './components/Home.jsx';
 import Faves from './components/Faves.jsx';
 import Sort from './components/Sort.jsx';
+import { Image } from 'react-bootstrap';
 import ProductPage from './components/ProductPage.jsx';
 import Footer from './components/Footer.jsx';
 import './App.css';
@@ -35,9 +36,11 @@ function Root() {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" static="top" bg="light" data-bs-theme="light">
-  <Container>
-    <Navbar.Brand className='Navhome' as={Link} to="/">Fruktkorg</Navbar.Brand>
+  <Navbar collapseOnSelect expand="lg" static="top" bg="light" data-bs-theme="light">
+  <Container fluid className="px-4">
+  <Navbar.Brand as={Link} to="/" className="me-auto"style={{ marginLeft: '2vh' }}>
+          <Image fluid src="/logga.png" style={{ width: '150px', height: 'auto' }} />
+        </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNavbar} />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ms-auto">
