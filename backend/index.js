@@ -41,6 +41,93 @@ app.get('/productpage/:id', (req, res) => {
     })
 })
 
+// Lägg till produkt i varukorg
+app.post('/cart/:id', (req, res) => {
+    const { userId, productId, quantity } = req.body;
+
+    // Kontrollera att alla nödvändiga värden finns
+    if (!productId || !quantity) {
+        return res.status(400).send('obligatoriska värden saknas');
+    }
+
+    // Sätt userId till NULL om det inte finns
+    const userIdValue = userId ? userId : null;
+
+    db.run('INSERT INTO cart (userId, productId, quantity) VALUES (?, ?, ?)', [userIdValue, productId, quantity], function(err) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Database error');
+            return;
+        }
+        res.status(201).send({ cartItemId: this.lastID });
+    });
+});
+
+
+// Hämta alla produkter i varukorg
+app.get('/cart/:id', (_req, res) => {
+    db.all('SELECT * FROM cart', (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Database error');
+            return;
+        }
+        res.json(rows);
+    });
+});
+
+// Ta bort produkt från varukorg
+app.delete('/cart/:id', (req, res) => {
+    const id = req.params.id;
+    db.run('DELETE FROM cart WHERE id = ?', [id], function(err) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Database error');
+            return;
+        }
+        res.status(200).send({ deleted: this.changes });
+    });
+});
+
+
+/* // Hantera varukorg
+app.post('/cart', (req, res) => {
+    const { userId, productId, quantity } = req.body;
+    db.run('INSERT INTO cart (userId, productId, quantity) VALUES (?, ?, ?)', [userId, productId, quantity], (err) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Database error');
+            return;
+        }
+        res.status(201).send('Product added to cart');
+    });
+});
+
+app.get('/cart/:userId', (req, res) => {
+    const userId = req.params.userId;
+    db.all('SELECT * FROM cart WHERE userId = ?', [userId], (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Database error');
+            return;
+        }
+        res.json(rows);
+    });
+});
+
+app.delete('/cart/:userId/:productId', (req, res) => {
+    const { userId, productId } = req.params;
+    db.run('DELETE FROM cart WHERE userId = ? AND productId = ?', [userId, productId], (err) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Database error');
+            return;
+        }
+        res.status(200).send('Product removed from cart');
+    });
+}); */
+
+
 // Hämta alla användare
 app.get('/Login', (req, res) => {
     db.all('SELECT * FROM users', (err, rows) => {

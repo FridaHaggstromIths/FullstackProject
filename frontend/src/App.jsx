@@ -18,18 +18,20 @@ import { BsBasket } from "react-icons/bs";
 import { GoPerson } from "react-icons/go";
 import { FaRegHeart } from "react-icons/fa";
 import "@fontsource/roboto-mono"
+import LoginForReal from './components/LoginForReal.tsx'
+import { CartProvider } from './components/CartContext';
 
 import {
   createHashRouter,
   Outlet,
   RouterProvider
 } from 'react-router-dom';
-import LoginForReal from './components/LoginForReal.tsx'
+
 
 function Root() {
-  
+
     const [collapsed, setCollapsed] = useState(true)
-  
+
     const toggleNavbar = () => {
       setCollapsed(!collapsed)
     }
@@ -89,7 +91,11 @@ function App() {
     }
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <CartProvider>
+    <RouterProvider router={router} />
+    </CartProvider>
+  )
 }
 
 export default App;
