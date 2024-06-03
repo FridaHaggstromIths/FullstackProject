@@ -1,29 +1,29 @@
-import { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { Row, Col, Card, Button } from 'react-bootstrap';
-import HeroStrip from './HeroStripImage';
-import { CartContext } from './CartContext';
+import { useEffect, useState, useContext } from 'react'
+import { useParams } from 'react-router-dom'
+import { Row, Col, Card, Button } from 'react-bootstrap'
+import HeroStrip from './HeroStripImage'
+import { CartContext } from './CartContext'
 
 const ProductPage = () => {
-    const { id } = useParams();
-    const [product, setProduct] = useState(null); // Ändra initial värde till null
-    const { addToCart } = useContext(CartContext);
+    const { id } = useParams()
+    const [product, setProduct] = useState(null) // Ändra initial värde till null för att
+    const { addToCart } = useContext(CartContext)
 
     useEffect(() => {
-        console.log(`Fetching product with id: ${id}`);
+        console.log(`Fetching product with id: ${id}`)
 
         fetch(`/productpage/${id}`)
             .then(response => response.json())
             .then(data => setProduct(data))
             .catch(error => {
-                console.error('There was an error fetching the product!', error);
-            });
-    }, [id]);
+                console.error('There was an error fetching the product!', error)
+            })
+    }, [id])
 
     const handleAddToCart = () => {
-        const userId = null; // Sätt userId till null om användaren inte är inloggad
-        const productId = product.ID; // OBS: Se till att produkt-ID är korrekt, ändra detta vid behov
-        const quantity = 1; // Exempelvärde, kan justeras baserat på användarens val
+        const userId = null
+        const productId = product.ID
+        const quantity = 1
 
         fetch(`/cart/${id}`, {
             method: 'POST',

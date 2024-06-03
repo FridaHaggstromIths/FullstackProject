@@ -21,8 +21,8 @@ app.get('/fruktkorg', (_req, res) => {
             return
         }
         res.json(rows)
-    });
-});
+    })
+})
 
 // Hämta specifik fruktkorg
 app.get('/productpage/:id', (req, res) => {
@@ -43,25 +43,26 @@ app.get('/productpage/:id', (req, res) => {
 
 // Lägg till produkt i varukorg
 app.post('/cart/:id', (req, res) => {
-    const { userId, productId, quantity } = req.body;
+    const { userId, productId, quantity } = req.body
 
     // Kontrollera att alla nödvändiga värden finns
     if (!productId || !quantity) {
-        return res.status(400).send('obligatoriska värden saknas');
+        return res.status(400).send('obligatoriska värden saknas')
     }
 
     // Sätt userId till NULL om det inte finns
-    const userIdValue = userId ? userId : null;
+    const userIdValue = userId ? userId : null
 
     db.run('INSERT INTO cart (userId, productId, quantity) VALUES (?, ?, ?)', [userIdValue, productId, quantity], function(err) {
         if (err) {
-            console.error(err.message);
-            res.status(500).send('Database error');
-            return;
+            console.error(err.message)
+            res.status(500).send('Database error')
+            return
         }
-        res.status(201).send({ cartItemId: this.lastID });
-    });
-});
+        res.status(201).send({ cartItemId: this.lastID })
+    })
+})
+
 
 
 // Hämta alla produkter i varukorg
@@ -72,9 +73,11 @@ app.get('/cart/:id', (_req, res) => {
             res.status(500).send('Database error');
             return;
         }
+        console.log('Fetched cart items:', rows);
         res.json(rows);
     });
 });
+
 
 // Ta bort produkt från varukorg
 app.delete('/cart/:id', (req, res) => {
@@ -88,44 +91,6 @@ app.delete('/cart/:id', (req, res) => {
         res.status(200).send({ deleted: this.changes });
     });
 });
-
-
-/* // Hantera varukorg
-app.post('/cart', (req, res) => {
-    const { userId, productId, quantity } = req.body;
-    db.run('INSERT INTO cart (userId, productId, quantity) VALUES (?, ?, ?)', [userId, productId, quantity], (err) => {
-        if (err) {
-            console.error(err.message);
-            res.status(500).send('Database error');
-            return;
-        }
-        res.status(201).send('Product added to cart');
-    });
-});
-
-app.get('/cart/:userId', (req, res) => {
-    const userId = req.params.userId;
-    db.all('SELECT * FROM cart WHERE userId = ?', [userId], (err, rows) => {
-        if (err) {
-            console.error(err.message);
-            res.status(500).send('Database error');
-            return;
-        }
-        res.json(rows);
-    });
-});
-
-app.delete('/cart/:userId/:productId', (req, res) => {
-    const { userId, productId } = req.params;
-    db.run('DELETE FROM cart WHERE userId = ? AND productId = ?', [userId, productId], (err) => {
-        if (err) {
-            console.error(err.message);
-            res.status(500).send('Database error');
-            return;
-        }
-        res.status(200).send('Product removed from cart');
-    });
-}); */
 
 
 // Hämta alla användare
@@ -217,145 +182,7 @@ app.post('/subscribe', (req, res) => {
 
 
 
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Redo på http://localhost:${PORT}`)
 })
-
-
-
-
-
-
-
-
-
-
-/* const express = require('express')
-const path = require('path')
-const sqlite3 = require('sqlite3').verbose()
-const bodyParser = require('body-parser')
-
-const app = express()
-
-// Öppna anslutning till DB
-const db = new sqlite3.Database(path.resolve(__dirname, 'fruktkorgar.sqlite'))
-
-
-app.get('/fruktkorg', (_req, res) => {
-    db.all('SELECT * FROM fruktkorg', (err, rows) => {
-        if (err) {
-            console.error(err.message)
-            res.status(500).send('Database error')
-            return
-        }
-        res.json(rows)
-    })
-})
-
-
-app.get('/productpage/:id', (req, res) => {
-    const id = req.params.id
-    db.get('SELECT * FROM fruktkorg WHERE id = ?', [id], (err, row) => {
-        if (err) {
-            console.error(err.message)
-            res.status(500).send('Database error')
-            return
-        }
-        if (!row) {
-            res.status(404).send('Product not found')
-            return
-        }
-        res.json(row)
-    })
-})
-
-
-app.get('/Login', (req, res) => {
-    db.all('SELECT * FROM users', (err, rows) => {
-        if (err) {
-            console.error(err.message)
-            res.status(500).send('Database error')
-            return
-        }
-        res.json(rows)
-    })
-})
-
-app.use(bodyParser.json())
-app.post('/Login', (req, res) => {
-    const { firstName, lastName, email, password } = req.body
-    db.run('INSERT INTO users (firstName, lastName, email, password) VALUES (?,?,?,?)', [firstName, lastName, email, password], (err, rows) => {
-        if (err) {
-            return res.status(500).send('Error inserting email into database')
-          }
-        res.json(rows)
-    })
-})
-
-app.post('/', (req, res) => {
-    const { email } = req.body
-    if (!email) {
-        return res.status(400).send('Ingen email inlagd' )
-      }
-    db.run('INSERT INTO newsletter (newsEmail) VALUES (?)', [email], (err, rows) => {
-        if (err) {
-            return res.status(500).send('Error inserting email into database')
-          }
-        res.json(rows)
-    })
-})
-
-
-// Middleware för att läsa statiska filer med express från mappen dist
-app.use(express.static(path.join(path.resolve(), 'dist')))
-
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-    console.log('Redo på http://localhost:3000')
-})
- */
-
-
-
-/* const express = require('express'),
-    path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-
-const app = express();
-
-const db = new sqlite3.Database(path.resolve(__dirname, 'fruktkorgar.sqlite'));
-
-
-app.get('/fruktkorg', (_req, res) => {
-    db.all('SELECT * FROM fruktkorg', (err, rows) => {
-        if (err) {
-            console.error(err.message);
-            res.status(500).send('Database error')
-            return
-        }
-        res.json(rows)
-    })
-})
-
-app.get('/fruktkorg/:id', (req, res) => {
-  const id = req.params.id
-  db.get('SELECT * FROM fruktkorg WHERE id = ?', [id], (err, row) => {
-      if (err) {
-          console.error(err.message)
-          res.status(500).send('Database error')
-          return
-      }
-      res.json(row)
-  })
-})
-
-
-app.use(express.static(path.join(path.resolve(), 'dist')));
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log('Redo på http://localhost:3000');
-});
- */
