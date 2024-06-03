@@ -10,7 +10,7 @@ const validationSchema = Yup.object().shape({
   lastName: Yup.string().required('Efternamn är obligatoriskt'),
   email: Yup.string().email('Ogiltig e-postadress').required('E-post är obligatoriskt'),
   password: Yup.string().min(6, 'Lösenord måste vara minst 6 tecken långt').required('Lösenord är obligatoriskt'),
-});
+})
 
 interface Values {
   firstName: string

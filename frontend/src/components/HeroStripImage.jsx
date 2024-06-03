@@ -3,8 +3,8 @@ import Image from 'react-bootstrap/Image'
 
 
 function HeroStrip() {
-  return <div> <Image fluid src="/appleHeroStrip.jpg" style={{marginBottom:'2vh'}} />
-</div>
+  return <Image fluid src="/appleHeroStrip.jpg" style={{marginBottom:'2vh'}} />
+
 }
 
 export default HeroStrip

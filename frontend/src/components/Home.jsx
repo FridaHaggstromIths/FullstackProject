@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
-const Home = () =>{
-  return (<div>
+const Home = () => {
+  return (
+  <div>
     <HeroImage />
 
     <Card className="InfoText" style={{marginTop:'5vh', width:'100%', border: 'none', borderRadius:'0'}}>
