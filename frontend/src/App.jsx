@@ -42,14 +42,14 @@ function Root() {
   <Navbar collapseOnSelect expand="lg" static="top" bg="light" data-bs-theme="light">
   <Container fluid className="px-4">
   <Navbar.Brand as={Link} to="/" className="me-auto"style={{ marginLeft: '2vh' }}>
-          <Image fluid src="/logga.png" style={{ width: '150px', height: 'auto' }} />
+          <Image className='Logga' fluid src="/logga.png" style={{ width: '200px', height: 'auto' }} />
         </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNavbar} />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ms-auto">
         <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/sort">
           <BsShopWindow />
-          {!collapsed && <span className="nav-icon-title">Shop</span>}
+          {!collapsed && <span className="nav-icon-title">Shoppa</span>}
         </Nav.Link>
         <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/login">
           <GoPerson />
@@ -57,11 +57,11 @@ function Root() {
         </Nav.Link>
         <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/faves">
           <FaRegHeart />
-          {!collapsed && <span className="nav-icon-title">Favorites</span>}
+          {!collapsed && <span className="nav-icon-title">Favoriter</span>}
         </Nav.Link>
         <Nav.Link className='Headerlink' style={{ padding: '3vh' }} as={Link} to="/cart">
           <BsBasket />
-          {!collapsed && <span className="nav-icon-title">Cart</span>}
+          {!collapsed && <span className="nav-icon-title">Varukorg</span>}
         </Nav.Link>
       </Nav>
     </Navbar.Collapse>

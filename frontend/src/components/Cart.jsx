@@ -21,7 +21,7 @@ const Cart = () => {
             const productsWithCartItemId = products.map((product, index) => ({
               ...product,
               cartItemId: cartItems[index].id
-            }));
+            }))
             setProducts(productsWithCartItemId)
           })
           .catch(error => console.error('Error fetching products:', error))
@@ -45,32 +45,32 @@ const Cart = () => {
   return (
       <>
       <HeroStrip />
-      <Card className="w-100 h-100 m-10" style={{border: 'none', minHeight:'50vh'}} >
-  <Card.Body className="d-flex flex-column justify-content-center text-start align-items-center">
+      <Card className="w-100 h-100 m-10" style={{ border: 'none', minHeight: '50vh' }}>
+  <Card.Body className="d-flex flex-column justify-content-start align-items-center">
     {products.map(product => (
-      <div key={product.id} className="d-flex align-items-center mb-3 custom-div border-bottom pt-3">
+      <div key={product.id} className="d-flex align-items-start mb-3 border-bottom pt-3 w-100" style={{ minHeight: '200px' }}>
         <img src={product.img} alt="en bild på en fruktkorg" className="img-fluid" style={{ width: '150px', marginRight: '5vh' }} />
-        <div style={{marginRight:'4vh'}}>
+        <div className="d-flex flex-column" style={{ flex: '1', marginRight: '4vh' }}>
           <Card.Title>{product.titel}</Card.Title>
           <Card.Text>{product.price}kr</Card.Text>
           <Button
-          variant="danger"
-          onClick={() => handleRemoveFromCart(product.cartItemId)}
-          className="mx-auto w-20"
-          style={{ marginLeft:'5vh' }}
-        >
-          Ta bort
-        </Button>
+            variant="danger"
+            onClick={() => handleRemoveFromCart(product.cartItemId)}
+            className="mt-auto"
+            style={{ width:'100px',marginTop: 'auto' }}
+          >
+            Ta bort
+          </Button>
         </div>
       </div>
     ))}
     <div className="text-center mb-3 border-top pt-3 w-100 h-100 m-10">
       <h2>Total: {total} kr</h2>
-      <Button 
+      <Button
         variant='success'
         size='lg'
         className="mx-auto w-30 mt-3 mb-15"
-        as={Link} to={`/ThankYou`} 
+        as={Link} to={`/ThankYou`}
       >
         Betala
       </Button>

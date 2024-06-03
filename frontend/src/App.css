@@ -7,7 +7,7 @@ body {
   font-family: "Roboto Mono";
 }
 .Navhome {
-  font-size: 48px;
+  font-size: 40px;
 }
   .ms-auto {
 font-size: 48px;
@@ -22,6 +22,7 @@ font-size: 48px;
     transform: translateY(-10px);
     }
   }
+  
   .Headerlink:hover{
     animation: jump 2s ease
   }
@@ -42,22 +43,9 @@ font-size: 48px;
   margin-left: 2vh;
 }
 
-.cart-count {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: red;
-  color: white;
-  border-radius: 50%;
-  padding: 0.5em;
-  font-size: 0.75em;
-}
 
-.nav-icon-title {
-  margin-left: 0.5em;
-  font-size: 1em;
-}
-
-.custom-div {
-  max-width: 95%;
+@media (max-width: 400px) {
+  .Logga {
+    width: 100px !important;
+  }
 }
