@@ -45,7 +45,7 @@ const Cart = () => {
   return (
       <>
       <HeroStrip />
-      <Card className="w-100 h-100 m-10" style={{border: 'none'}} >
+      <Card className="w-100 h-100 m-10" style={{border: 'none', minHeight:'50vh'}} >
   <Card.Body className="d-flex flex-column justify-content-center text-start align-items-center">
     {products.map(product => (
       <div key={product.id} className="d-flex align-items-center mb-3 custom-div border-bottom pt-3">
@@ -53,8 +53,7 @@ const Cart = () => {
         <div style={{marginRight:'4vh'}}>
           <Card.Title>{product.titel}</Card.Title>
           <Card.Text>{product.price}kr</Card.Text>
-        </div>
-        <Button
+          <Button
           variant="danger"
           onClick={() => handleRemoveFromCart(product.cartItemId)}
           className="mx-auto w-20"
@@ -62,15 +61,15 @@ const Cart = () => {
         >
           Ta bort
         </Button>
-
+        </div>
       </div>
     ))}
-    <div className="text-center mb-3 border-top pt-3">
-      <h2>Total: {total}kr</h2>
+    <div className="text-center mb-3 border-top pt-3 w-100 h-100 m-10">
+      <h2>Total: {total} kr</h2>
       <Button 
         variant='success'
-        size="lg"
-        className="mx-auto w-50"
+        size='lg'
+        className="mx-auto w-30 mt-3 mb-15"
         as={Link} to={`/ThankYou`} 
       >
         Betala
