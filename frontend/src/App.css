@@ -57,3 +57,7 @@ font-size: 48px;
   margin-left: 0.5em;
   font-size: 1em;
 }
+
+.custom-div {
+  max-width: 95%;
+}

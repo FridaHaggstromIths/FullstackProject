@@ -26,6 +26,7 @@ import {
   Outlet,
   RouterProvider
 } from 'react-router-dom';
+import ThankYou from './components/ThankYou.jsx';
 
 
 function Root() {
@@ -86,7 +87,8 @@ function App() {
         { element: <Cart />, path: '/cart' },
         { element: <Faves />, path: '/faves' },
         { element: <ProductPage />, path: '/productpage/:id' },
-        { element: <LoginForReal />, path: '/LoginForReal'}
+        { element: <LoginForReal />, path: '/LoginForReal'},
+        { element: <ThankYou />, path: '/ThankYou'}
       ]
     }
   ]);

@@ -10,7 +10,8 @@ function Footer() {
                 <Row bg="light" data-bs-theme="light">
                     <Col className="mx-5"> 
                     <h2>FRUKTKORG</h2>
-                    <p>Frukt för alla tillfällen</p> <SignUp />
+                    <p>Frukt för alla tillfällen</p> 
+                    <SignUp />
                     </Col>
                     <Col>
                         <Nav style={{padding:'10px'}} className='flex-column fs-5'>
@@ -22,7 +23,7 @@ function Footer() {
                             </Col>
                     <Col>
                         <h4>Kontakta oss!</h4>
-                        <p>fruktkorg@fakeemail.com</p>
+                        <p>fruktogram@fakeemail.com</p>
                         <p>Telefon: 070-123-frukt</p></Col>
 
                 </Row>
