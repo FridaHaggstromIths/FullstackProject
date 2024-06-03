@@ -15,7 +15,7 @@ return (
     <HeroStrip />
     <Card className="InfoText" style={{marginTop:'5vh', width:'100%', border: 'none', borderRadius:'0'}}>
       <Card.Body style={{background: '#EAEEED', padding:'3vh', textAlign:'left'}}>
-        <Card.Title className="display-6" style={{marginLeft:'3vh', marginRight:'3vh', marginBottom:'2vh'}}>Tack för att du handlar av oss!</Card.Title>
+        <Card.Title className="display-6" style={{marginLeft:'3vh', marginRight:'3vh', marginBottom:'2vh'}}>Tack för att du handlar hos oss!</Card.Title>
         <Card.Text style={{marginLeft:'3vh', marginRight:'3vh'}}>
             <p>Tack för att du handlade hos oss på FruktOgram. Vi har mottagit din beställning och den är nu under behandling.</p>
             <p>Ordernummer: {smallNumber} </p>
