@@ -23,14 +23,14 @@ const Fruktkorg = () => {
     <Row xs={1} md={2} className="g-4">
       {fruktkorg.map((frukt) => (
         <Col key={frukt.ID}>
-          <Card className="text-center">
+          <Card className="text-center" style={{border: 'none', margin:'2vh'}}>
             <Card.Img variant="top" src={frukt.img} alt="en bild på en fruktkorg" />
             <Card.Body>
               <Card.Title>{frukt.titel}</Card.Title>
               <Card.Text>{frukt.info}</Card.Text>
               <Button id={frukt.ID}
               variant="success"size="lg"
-              as={Link} to={`/productpage/${frukt.ID}`} 
+              as={Link} to={`/productpage/${frukt.ID}`}
               className="mx-auto w-50">Visa</Button>
             </Card.Body>
           </Card>

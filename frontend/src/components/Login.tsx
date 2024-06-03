@@ -46,15 +46,15 @@ const Login = () => {
   return (
     <>
       <HeroStrip />
-      
+
         <div className="d-flex flex-column align-items-center vh-95 mt-4 mb-1">
-          <h1 className='SkapaKonto'>Skapa konto</h1>
+          <h1 className='SkapaKonto' style={{textAlign:'center'}}>Skapa konto</h1>
           <Formik
-            initialValues={{ 
-              firstName: '', 
-              lastName: '', 
-              email: '', 
-              password: '' 
+            initialValues={{
+              firstName: '',
+              lastName: '',
+              email: '',
+              password: ''
             }}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
@@ -122,10 +122,9 @@ const Login = () => {
           </Row>
 
         </div>
-      
+
     </>
   )
 }
 
 export default Login
-
