@@ -9,11 +9,11 @@ function Footer() {
             <Container fluid>
                 <Row bg="light" data-bs-theme="light">
                 <Navbar.Brand as={Link} to="/" className="text-center">
-                <Image fluid src="/logga.png" style={{ width: '200px', height: 'auto' }} className='Logga' />
+                <Image fluid src="/logga.png" style={{ width: '200px', height: 'auto' }}  />
                 </Navbar.Brand>
                 </Row>
                 <Row bg="light" data-bs-theme="light">
-                    <Col md={{ span: 6 }} className="text-center">
+                    <Col md={{ span: 6 }} className="text-center"> 
                         <Nav style={{padding:'10px'}} className='flex-column fs-5'>
                         <Nav.Link as={Link} to="/sort"className="text-dark">Sortiment</Nav.Link>
                         <Nav.Link as={Link} to="/login"className="text-dark">Logga in</Nav.Link>

@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react'
 import HeroStrip from './HeroStripImage'
-import { Button } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
@@ -17,6 +17,9 @@ interface Values {
 
 const LoginForReal = () => {
     const [addAccount, setAddAccount] = useState(false)
+    const [showModal, setShowModal] = useState(false)
+
+    const handleClose = () => setShowModal(false)
 
     const handleSubmit = async (values: Values, { setSubmitting, setErrors }: FormikHelpers<Values>) => {
         try {
@@ -33,7 +36,7 @@ const LoginForReal = () => {
             return
           }
             setAddAccount(true)
-            alert('Välkommen!')
+            setShowModal(true)
         } catch (error) {
           console.error('Error login:', error)
           setErrors({ email: ' ', password: 'Något gick fel, försök igen.' })
@@ -82,6 +85,20 @@ const LoginForReal = () => {
         )}
       </Formik>
     </div>
+
+    <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Välkommen</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="py-4">
+          Du är nu inloggad! Weho 
+          </Modal.Body>
+          <Modal.Footer>
+          <Button variant="success" onClick={handleClose}>
+            Close
+          </Button>
+          </Modal.Footer>
+      </Modal>
     </>
   )
 }

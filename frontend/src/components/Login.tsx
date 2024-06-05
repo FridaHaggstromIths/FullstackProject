@@ -111,7 +111,7 @@ const Login = () => {
               </Form>
             )}
           </Formik>
-          {addAccount && <p>Hurra du har skaffat konto hos oss!</p>}
+          {addAccount && <p className='mt-3' style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Hurra du har skaffat konto hos oss!</p>}
           <Row className ="d-flex flex-column align-items-center">
           <p className='orAccount'> Eller har du redan ett konto hos oss?</p>
           <Link to="/LoginForReal" style={{ textDecoration: 'none', width: '100%' }}>

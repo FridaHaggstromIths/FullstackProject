@@ -44,6 +44,9 @@ function Root() {
   <Navbar.Brand as={Link} to="/" className="me-auto"style={{ marginLeft: '2vh' }}>
           <Image className='Logga' fluid src="/logga.png" style={{ width: '200px', height: 'auto' }} />
         </Navbar.Brand>
+        <div className="d-flex flex-column align-items-center mx-auto" style={{ flex: '1' }}>
+          <Image className='kvalitet mt-5' fluid src='/kvalitetskontroll.jpg' />
+        </div>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNavbar} />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ms-auto">
