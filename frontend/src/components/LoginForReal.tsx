@@ -28,7 +28,7 @@ const LoginForReal = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(values),
           })
-    
+
           if (!response.ok) {
             const errorData = await response.json()
             setErrors({ email: ' ', password: errorData.message || 'Något gick fel, försök igen.' })
@@ -91,11 +91,11 @@ const LoginForReal = () => {
           <Modal.Title>Välkommen</Modal.Title>
         </Modal.Header>
         <Modal.Body className="py-4">
-          Du är nu inloggad! Weho 
+          Du är nu inloggad! Weho
           </Modal.Body>
           <Modal.Footer>
           <Button variant="success" onClick={handleClose}>
-            Close
+            Stäng
           </Button>
           </Modal.Footer>
       </Modal>
